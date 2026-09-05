@@ -1,6 +1,6 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const studentRoute = require('./controller/studentRoute')
+import express from 'express'
+import mongoose from 'mongoose'
+import studentRoute from './controller/studentRoute.js';
 
 const app = express()
 const PORT = 2365
@@ -10,7 +10,7 @@ app.use(express.json())
 app.get('/', (req, res) => {
     res.send("Ibrahim Umar Ality")
 })
-app.use('student', studentRoute)
+app.use('/student', studentRoute)
 
 mongoose.connect(MONGO_URL).then(() =>{
     console.log('MONGO is Connected!')

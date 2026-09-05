@@ -1,7 +1,7 @@
-const studentModel = require('./studentModel')
+import studentModel from './studentModel.js'
 
 //CREATE STUDENT
-const createStudent = async (req, res) => {
+export const createStudent = async (req, res) => {
     try{
         const {name, RegistrationNumber, password} = req.body;
         const user = await studentModel.create({name, RegistrationNumber, password});
@@ -15,7 +15,7 @@ const createStudent = async (req, res) => {
 };
 
 //UPDATE STUDENT
-const updateStudent = async (req, res) =>{
+export const updateStudent = async (req, res) =>{
     try{
         const {id} = req.params;
         const {name} = req.body;
@@ -31,7 +31,7 @@ const updateStudent = async (req, res) =>{
 }
 
 // DELETE STUDENT ACCOUNT
-const deleteStudent = async (req, res) =>{
+export const deleteStudent = async (req, res) =>{
     try{
         const {id} = req.params;
         const deleteStudent = await studentModel.findByIdAndDelete (id);
@@ -46,18 +46,18 @@ const deleteStudent = async (req, res) =>{
     }
 }
 // GET STUDENT
-const getStudent = async (req, res) =>{
+export const getStudent = async (req, res) =>{
     try{
         const {id} = req.params;
-        const getStudent = await userModel.findById(id);
-        if(!getStudent){
+        const student = await studentModel.findById(id);
+        if(!student){
             return res.status(404).json({
                 message: 'Student Not Found'
             })
         }
         res.status(200).json({
             message: 'Student Found',
-            data: getStudent
+            data: student
         })
 
     } catch(error){
@@ -67,4 +67,3 @@ const getStudent = async (req, res) =>{
     }
 }
 
-module.exports = {createStudent, updateStudent, deleteStudent, getStudent};

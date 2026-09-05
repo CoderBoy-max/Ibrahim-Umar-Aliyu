@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-
+import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
     name: {type: String, required: true},
     RegistrationNumber: {type: String, required: true, unique: true},
@@ -8,4 +7,4 @@ const userSchema = new mongoose.Schema({
 
 const studentModel = mongoose.model('student', userSchema);
 
-module.exports = studentModel;
+export default studentModel;
